@@ -1,0 +1,44 @@
+GITHUB SYNC - SORUN COZME REHBERI
+=================================
+
+Gunluk GitHub senkronizasyonu tikandiginda asagidaki adimlari izleyin.
+Sorunlu repolar genelde ~/GitHub/ altindadir, ornegin: ~/GitHub/RAG_crypto
+
+ADIM 0 - Durumu gorun
+    cd ~/GitHub/<repo>
+    git status
+
+ADIM 1 - Yerel degisikliklerin var ama push yapmak istemiyorsun (en guvenlisi)
+    Buradaki calisman korunur, ileri degisiklikler cekilir:
+    git stash
+    git pull --ff-only
+    git stash pop
+    Not: stash pop'ta cakisma olursa git dosyalari "Cakisma" isaretine gore
+    birlestirmeni ister - dosyalari acip el ile duzelt, sonra:
+    git add <duzeltilen dosyalar>
+    git stash drop
+
+ADIM 2 - Yerel degisiklikleri commit edip pushlamak istiyorsun
+    HASSAS dosya var mi kontrol et (sifre, token, .env gibi):
+    git status
+    git add -A
+    git commit -m "guncelleme: <ne yaptigin>"
+    git push
+
+ADIM 3 - Commit ettin ama push yapamadin (gecmis yaristi)
+    git pull --rebase
+    git push
+
+ADIM 4 - Pull/push ag hatasi veriyor
+    Ag baglantini kontrol et, sonra:
+    gh auth status
+    Sadece senin repolarin senkronize edilir; yabanci repolarda remote degistirme.
+
+GENEL KURALLAR
+- sync-github-repos.sh SADECE ceker (pull), yerel degisikliklere el surmez.
+- Asla sunlari calistirma (veri kaybi):
+      git reset --hard
+      git checkout -- .
+      git clean -fdx
+- Emin degilsen once bir yedek al:
+      cp -r ~/GitHub/<repo> /tmp/<repo>.yedek

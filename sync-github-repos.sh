@@ -58,6 +58,9 @@ info "done: $cloned cloned, $updated up to date, ${#failed[@]} failed"
 
 if [ ${#failed[@]} -gt 0 ]; then
   details="$(printf '  - %s\n' "${failed[@]}")"
-  notify-send -u critical "GitHub sync: ${#failed[@]} repo skipped" \
-    "Some repos need your attention:\n$details" 2>/dev/null || true
+  notify-send -u critical --wait --action=guide="Ne yapmaliyim?" \
+    "GitHub sync: ${#failed[@]} repo skipped" \
+    "$details" 2>/dev/null | while read -r action; do
+      [ "$action" = "guide" ] && xdg-open "$REPO_DIR/SYNC-FIX-GUIDE.txt" 2>/dev/null || true
+    done || true
 fi
