@@ -5,6 +5,7 @@ set -euo pipefail
 # Runs manually or as part of the daily dotfiles-backup systemd timer.
 # Pull-only: local changes are never committed or pushed.
 
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GH_DIR="$HOME/GitHub"
 USERNAME="KaplanHalil"
 SKIP="dotfiles"
@@ -58,9 +59,8 @@ info "done: $cloned cloned, $updated up to date, ${#failed[@]} failed"
 
 if [ ${#failed[@]} -gt 0 ]; then
   details="$(printf '  - %s\n' "${failed[@]}")"
-  notify-send -u critical --wait --action=guide="Ne yapmaliyim?" \
+  hint="[\"xdg-open\",\"$REPO_DIR/SYNC-FIX-GUIDE.txt\"]"
+  notify-send -u critical -h "string:omarchy-exec-argv:$hint" \
     "GitHub sync: ${#failed[@]} repo skipped" \
-    "$details" 2>/dev/null | while read -r action; do
-      [ "$action" = "guide" ] && xdg-open "$REPO_DIR/SYNC-FIX-GUIDE.txt" 2>/dev/null || true
-    done || true
+    "$details - Click: opens the fix guide" 2>/dev/null || true
 fi
