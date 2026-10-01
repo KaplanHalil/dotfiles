@@ -28,6 +28,16 @@ systemctl --user enable --now dotfiles-backup.timer
 systemctl --user list-timers dotfiles-backup
 ```
 
+## GitHub repo sync
+
+`~/GitHub` holds clones of every `KaplanHalil` repo (except `dotfiles`). The
+daily timer also runs `sync-github-repos.sh`, which clones any missing repo and
+fast-forwards the existing ones (pull-only; local changes are left untouched).
+
+```sh
+~/.dotfiles/sync-github-repos.sh     # or wherever you cloned this repo
+```
+
 ## Restore (new machine)
 
 ```sh
