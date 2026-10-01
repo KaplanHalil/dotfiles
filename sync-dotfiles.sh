@@ -52,7 +52,17 @@ done
   done
 } > "$REPO_DIR/plugins.txt"
 
-# 3. Commit + push
+# 3. Package manifests (explicitly installed packages only)
+{
+  printf '# Explicitly installed packages from the official repos (pacman)\n'
+  pacman -Qqe | sort | comm -23 - <(pacman -Qqm || true | sort)
+} > "$REPO_DIR/packages-repo.txt"
+{
+  printf '# Explicitly installed AUR packages (yay)\n'
+  pacman -Qqm || true
+} > "$REPO_DIR/packages-aur.txt"
+
+# 4. Commit + push
 cd "$REPO_DIR"
 git add -A
 if git diff --cached --quiet; then

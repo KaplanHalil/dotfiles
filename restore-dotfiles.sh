@@ -59,4 +59,12 @@ while read -r id commit url; do
   info "installed $id @ $commit"
 done < "$REPO_DIR/plugins.txt"
 
+info "checking installed packages..."
+"$REPO_DIR/install-packages.sh" --dry-run
+if confirm "install missing packages now?"; then
+  "$REPO_DIR/install-packages.sh"
+else
+  info "skip packages (run ~/.dotfiles/install-packages.sh later)"
+fi
+
 info "done - apply with: omarchy restart shell && hyprctl reload"
