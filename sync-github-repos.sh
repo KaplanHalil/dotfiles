@@ -55,3 +55,9 @@ done
 
 info "done: $cloned cloned, $updated up to date, ${#failed[@]} failed"
 [ ${#failed[@]} -gt 0 ] && printf '  - %s\n' "${failed[@]}"
+
+if [ ${#failed[@]} -gt 0 ]; then
+  details="$(printf '  - %s\n' "${failed[@]}")"
+  notify-send -u critical "GitHub sync: ${#failed[@]} repo skipped" \
+    "Some repos need your attention:\n$details" 2>/dev/null || true
+fi
