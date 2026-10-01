@@ -1,0 +1,11 @@
+id                                         commit                                   repo
+io.github.ehlxr.advanced-workspaces        76605c83eefdd84eb49562845b0ca58a0eeb6519 https://github.com/ehlxr/advanced-workspaces.git
+io.github.salemsayed.omaprayers            61101232c082bbe93b83a1f89a21903e5356b16f https://github.com/salemsayed/omaprayers.git
+io.github.twiking.omasettings              72cfe1640aaece2fef39e4dd155289510f07b2a8 https://github.com/twiking/omasettings.git
+jankeesvw.notification-center              5dbd5abadaba32d0333fed76798dfc7450448922 https://github.com/jankeesvw/omarchy-notification-center.git
+jrmmhm.pocket                              ec3f769ce16b446ca38191d1d480a7a7ac2a1533 https://github.com/jrmmhm/omarchy-pocket.git
+meviusisback.hw-monitor                    f1373fba766fc1702e96eef0c9fe844ffeaafddb https://github.com/meviusisback/omarchy-hw-monitor.git
+omaplug                                    ccc954b8187b8b7556f734de6b0fb5a526835db6 https://github.com/fross100/omaplug.git
+omarchy-resizeable.resizeable              7c83184577b9d318c008030a98399819c540010e https://github.com/v3moreno/omarchy-resizeable.git
+siob.power-actions                         0480aebfcc1dafc051290a9cdfe85545a5d22e44 https://github.com/Johnathicc/omarchy-bios-plugin.git
+ubeyidah.omaclock                          dadca5c573274e4dee41c5771405d4b4fd2e8b9a https://github.com/ubeyidah/omaclock.git

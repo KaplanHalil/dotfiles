@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
+  "bar": {
+    "position": "top",
+    "transparent": false,
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "io.github.ehlxr.advanced-workspaces"
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "dddd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.spacer"
+        },
+        {
+          "id": "io.github.salemsayed.omaprayers",
+          "hanafi": false,
+          "calculationMethod": 13,
+          "locationLabel": "Gebze",
+          "locationLabelAr": "",
+          "latitude": "40.80276",
+          "longitude": "29.43068",
+          "timezone": "Europe/Istanbul"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omaplug"
+        },
+        {
+          "id": "ubeyidah.omaclock"
+        },
+        {
+          "id": "io.github.twiking.omasettings"
+        },
+        {
+          "id": "jrmmhm.pocket",
+          "members": "omaplug, ubeyidah.omaclock, io.github.twiking.omasettings"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "meviusisback.hw-monitor",
+          "mode": "labels"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "jankeesvw.notification-center"
+        },
+        {
+          "id": "omarchy.power"
+        },
+        {
+          "id": "siob.power-actions"
+        }
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "id": "omarchy-resizeable.resizeable"
+    }
+  ]
+}
