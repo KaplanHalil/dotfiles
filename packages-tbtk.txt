@@ -1,0 +1,23 @@
+# Host-specific packages: tbtk (work PC, NVIDIA + Intel).
+# Recorded from the work PC. Regenerate from that machine by running
+# sync-dotfiles.sh there; do not hand-edit.
+bitwarden
+bitwarden-cli
+gnome-text-editor
+intel-gpu-tools
+intel-media-driver
+intel-ucode
+lib32-nvidia-utils
+libva-nvidia-driver
+linux-headers
+minecraft-launcher
+nano
+nvidia-open-dkms
+nvidia-utils
+sof-firmware
+texlive-fontsextra
+texlive-latex
+texlive-latexextra
+texlive-pictures
+vpl-gpu-rt
+vulkan-intel

@@ -1,4 +1,0 @@
-# Explicitly installed AUR packages (yay)
-brave-bin
-meteobar-bin
-verifpal

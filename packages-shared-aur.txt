@@ -1,0 +1,3 @@
+# Shared AUR packages - safe to install on EVERY machine.
+# Curated by hand; never regenerated. See packages-shared.txt.
+brave-bin

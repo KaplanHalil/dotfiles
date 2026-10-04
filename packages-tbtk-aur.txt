@@ -1,0 +1,4 @@
+# Host-specific AUR packages: tbtk (work PC).
+# Recorded from the work PC. Do not hand-edit.
+meteobar-bin
+verifpal

@@ -1,0 +1,90 @@
+// Session Menu Configuration
+// Located at: ~/.config/omarchy/session-menu.jsonc
+// Changes to this file take effect instantly without restarting the shell.
+{
+  // Optional display preferences
+  "showPowerButton": true,       // Show or hide the top bar power launcher icon
+  "showUptime": true,
+  "confirmDestructive": true,
+  "confirmDuration": 3,  // Countdown duration in seconds (e.g. 2, 3, 5)
+  "showBadges": true,
+  "highlightShutdown": true,
+  "cardSize": 96,
+
+  // Actions list: toggle "enabled" to true/false to show or hide any action.
+  "actions": [
+    {
+      "id": "lock",
+      "label": "Lock",
+      "icon": "",
+      "command": "omarchy system lock",
+      "destructive": false,
+      "enabled": true
+    },
+    {
+      "id": "suspend",
+      "label": "Suspend",
+      "icon": "󰒲",
+      "command": "systemctl suspend",
+      "destructive": false,
+      "enabled": true
+    },
+    {
+      "id": "logout",
+      "label": "Logout",
+      "icon": "󰍃",
+      "command": "omarchy system logout",
+      "destructive": true,
+      "enabled": true
+    },
+    {
+      "id": "reboot",
+      "label": "Reboot",
+      "icon": "󰜉",
+      "command": "omarchy system reboot",
+      "destructive": true,
+      "enabled": true
+    },
+    {
+      "id": "shutdown",
+      "label": "Shutdown",
+      "icon": "",
+      "command": "omarchy system shutdown",
+      "destructive": true,
+      "highlight": true,
+      "enabled": true
+    },
+    {
+      "id": "hibernate",
+      "label": "Hibernate",
+      "icon": "󰤁",
+      "command": "systemctl hibernate",
+      "destructive": true,
+      "enabled": false
+    },
+    {
+      "id": "uefi",
+      "label": "UEFI",
+      "icon": "󰍜",
+      "command": "systemctl reboot --firmware-setup",
+      "destructive": true,
+      "enabled": false
+    },
+    {
+      "id": "screensaver",
+      "label": "Screensaver",
+      "icon": "󱄄",
+      "command": "omarchy-launch-screensaver force",
+      "destructive": false,
+      "enabled": false
+    },
+    {
+      "id": "reload",
+      "label": "Reload",
+      "icon": "",
+      "command": "hyprctl reload && omarchy restart shell",
+      "destructive": false,
+      "enabled": false
+    }
+  ]
+}
