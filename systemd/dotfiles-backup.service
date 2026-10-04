@@ -1,0 +1,29 @@
+[Unit]
+Description=Sync omarchy dotfiles to GitHub
+Documentation=file://%h/.dotfiles/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# %h keeps this machine-agnostic so the same unit file works on both PCs.
+#
+# sync-github-repos.sh needs the gh CLI and exits non-zero without it, which
+# would mark the whole unit failed even though the dotfiles push succeeded.
+# Hence "|| true" on that step: a missing gh must not fail the backup.
+ExecStart=%h/.dotfiles/sync-dotfiles.sh
+ExecStartPost=/bin/sh -c '%h/.dotfiles/sync-github-repos.sh || true'
+
+# The push needs an unlocked key. BatchMode=yes makes a missing agent fail
+# fast instead of hanging on a passphrase prompt inside a timer with no TTY.
+# systemd splits Environment= on whitespace, so the ssh options live in a
+# wrapper script rather than being inlined here.
+Environment=GIT_TERMINAL_PROMPT=0
+
+# Never block the timer on an interactive prompt.
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

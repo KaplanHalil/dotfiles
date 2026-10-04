@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily omarchy dotfiles backup to GitHub
+
+[Timer]
+# Run once a day, a little after boot-time settles. RandomizedDelaySec stops
+# both PCs from hitting GitHub at the same instant.
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=30m
+
+[Install]
+WantedBy=timers.target

@@ -4,6 +4,11 @@ set -euo pipefail
 # Copies omarchy/hyprland/terminal configs into this repo, commits and
 # pushes to GitHub. Run manually or via the systemd user timer.
 
+# Under systemd there is no TTY and no agent, so make git fail fast rather
+# than block forever on a passphrase or host-key prompt.
+export GIT_TERMINAL_PROMPT=0
+export GIT_SSH_COMMAND="${GIT_SSH_COMMAND:-ssh -oBatchMode=yes -oStrictHostKeyChecking=accept-new}"
+
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONF="$HOME/.config"
 DST="$REPO_DIR/home/.config"
