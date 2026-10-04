@@ -31,8 +31,49 @@ ADIM 3 - Commit ettin ama push yapamadin (gecmis yaristi)
 
 ADIM 4 - Pull/push ag hatasi veriyor
     Ag baglantini kontrol et, sonra:
-    gh auth status
+    ssh -T git@github.com
+    "Permission denied (publickey)" cikarsa anahtar yuklenmemis demektir:
+    cat ~/.ssh/id_ed25519.pub  ->  https://github.com/settings/ssh/new
     Sadece senin repolarin senkronize edilir; yabanci repolarda remote degistirme.
+
+DOTFILES (bu repo) - TIMER BASARISIZ
+------------------------------------
+Zamanlayici ("systemctl --user list-timers dotfiles-backup") su durumlarda
+push yapamaz; ekranda soru soramaz, bu yuzden hemen hata verir:
+
+ 1) SSH anahtari parola soruyor
+    Zamanlayici parola soramaz. Anahtarin parolasiz olmasi gerekir:
+        ssh-keygen -p -f ~/.ssh/id_ed25519   ->  eski bos, yeni bos
+    Parolasiz anahtar SADECE bu bilgisayarda guvenlidir; kendin karar ver.
+
+ 2) "~/.ssh/id_ed25519.pub" degistiyse
+    Yeni public key'i GitHub'a ekle: https://github.com/settings/ssh/new
+
+ 3) Push reddediliyor (non-fast-forward)
+    Baska bir makine (home <-> tbtk) ayni dosyayi degistirmis:
+        cd ~/.dotfiles
+        git pull --rebase
+        git push
+    Konflikt cikarsa dosyalari elle duzelt, sonra:
+        git add <duzeltilenler> && git rebase --continue
+
+ 4) Ne oldugunu gor
+        journalctl --user -u dotfiles-backup -n 40
+
+ 5) Ekranin kilitliyken / uyku modundayken timer calisir
+    Gecmis bir calistirmayi doldurmak icin Persistent=true ayarli;
+    "last" zamanini kontrol et:
+        systemctl --user list-timers dotfiles-backup
+
+PAKET TIERLARI
+--------------
+install-packages.sh YALNIZCA ~/.dotfiles-host-id'de yazan makinenin
+tier'ini okur. Yanlislikla:
+    "home" -> oyunlar (steam, lutris, wine) SADECE ev bilgisayarinda
+    "tbtk" -> nvidia/intel suruculer SADECE is bilgisayarinda
+Baska bir makinenin tier'i hicbir zaman okunmaz.
+Kendi turunu gormek icin:
+    ~/.dotfiles/install-packages.sh --host <id> --dry-run
 
 GENEL KURALLAR
 - sync-github-repos.sh SADECE ceker (pull), yerel degisikliklere el surmez.
@@ -42,3 +83,5 @@ GENEL KURALLAR
       git clean -fdx
 - Emin degilsen once bir yedek al:
       cp -r ~/GitHub/<repo> /tmp/<repo>.yedek
+- ~/.dotfiles altındaki degisiklikler omarchy config'ini ETKILEMEZ.
+  Etkilemek icin: omarchy restart shell && hyprctl reload
