@@ -82,6 +82,8 @@ allowed_pkgs() {
 
 if [ ! -f "$REPO_DIR/packages-$HOST.txt" ]; then
   warn "no tier file for host '$HOST' (packages-$HOST.txt)"
+  warn "an empty file is valid (a machine whose packages are all shared) --"
+  warn "create it with: touch ~/.dotfiles/packages-$HOST.txt"
   warn "known tiers: $(cd "$REPO_DIR" && ls packages-*.txt 2>/dev/null | sed 's/packages-//;s/\.txt//' | tr '\n' ' ')"
   warn "set the host with: echo $HOST > ~/.dotfiles-host-id"
   exit 1

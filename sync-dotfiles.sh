@@ -121,7 +121,11 @@ if [ -n "$HOST" ]; then
     LC_ALL=C comm -23 <(host_aur) <(shared_names packages-shared-aur.txt)
   } > "$REPO_DIR/packages-$HOST-aur.txt"
 
-  count_pkgs() { grep -cv '^[[:space:]]*#\|^[[:space:]]*$' "$1" 2>/dev/null || echo 0; }
+  count_pkgs() {
+    local n
+    n=$(grep -cv '^[[:space:]]*#\|^[[:space:]]*$' "$1" 2>/dev/null) || n=0
+    printf '%s' "$n"
+  }
   info "wrote package manifests for host '$HOST' ($(count_pkgs "$REPO_DIR/packages-$HOST.txt") unique repo, $(count_pkgs "$REPO_DIR/packages-$HOST-aur.txt") unique AUR)"
 fi
 
